@@ -1,0 +1,586 @@
+
+
+-------------1. Create a Tkinter window app that contain entry and button widget and on button click prompt message with entry widget text.-----------
+import tkinter as tk
+import tkinter.messagebox as msg
+
+window=tk.Tk()
+window.geometry("500x500")
+
+lbl1=tk.Label(window,text="Enter the name:- ",font="vardana 14 bold",bg="black",fg="white")
+lbl1.place(x=10,y=10,height=50,width=150)
+
+txt1=tk.Entry(window)
+txt1.place(x=200,y=10,height=50,width=150)
+
+def on_click():
+    msg.showinfo("output",txt1.get())
+
+btn_click=tk.Button(window,text="OK",font="vardana 14 bold",command=on_click)
+btn_click.place(x=200,y=80,height=50,width=50)
+
+window.mainloop()
+
+-------------------2. Create a Tkinter window Application that allow +,-,*,/ operation on two number.----------------------
+
+import tkinter as tk
+import tkinter.messagebox as tmsg
+window=tk.Tk()
+window.title("First GUI in Python")
+window.geometry("500x500")
+
+lbl1=tk.Label(window,text="Enter Number:",font="vardana 14 bold",bg="white",fg="black")
+lbl1.place(x=10,y=10,height=50,width=150)
+
+lbl2=tk.Label(window,text="Enter Number:",font="vardana 14 bold",bg="white",fg="black")
+lbl2.place(x=10,y=70,height=50,width=150)
+
+txt1=tk.Entry(window)
+txt1.place(x=200,y=10,height=50,width=150)
+
+txt2=tk.Entry(window)
+txt2.place(x=200,y=80,height=50,width=150)
+
+
+def on_click_button1():
+    n1=eval(txt1.get())
+    n2=eval(txt2.get())
+    ans=n1+n2
+    tmsg.showinfo("Answer",str(ans))
+
+def on_click_button2():
+    n1=eval(txt1.get())
+    n2=eval(txt2.get())
+    ans=n1-n2
+    tmsg.showinfo("Answer",str(ans))
+
+def on_click_button3():
+    n1=eval(txt1.get())
+    n2=eval(txt2.get())
+    ans=n1*n2
+    tmsg.showinfo("Answer",str(ans))
+
+def on_click_button4():
+    n1=eval(txt1.get())
+    n2=eval(txt2.get())
+    ans=n1/n2
+    tmsg.showinfo("Answer",str(ans))
+
+
+btn_click=tk.Button(window,text="+",font="vardana 14 bold",command=on_click_button1)
+btn_click.place(x=10,y=150,height=50,width=50)
+
+btn_click=tk.Button(window,text="-",font="vardana 14 bold",command=on_click_button2)
+btn_click.place(x=70,y=150,height=50,width=50)
+
+btn_click=tk.Button(window,text="*",font="vardana 14 bold",command=on_click_button3)
+btn_click.place(x=140,y=150,height=50,width=50)
+
+btn_click=tk.Button(window,text="/",font="vardana 14 bold",command=on_click_button4)
+btn_click.place(x=210,y=150,height=50,width=50)
+window.mainloop()
+
+
+
+------------------3. Create a Tkinter window Application that implements currency converter.-----------------
+
+from tkinter import ttk
+import  tkinter as tk
+import tkinter.messagebox as msg
+window=tk.Tk()
+window.title("Curreny converter")
+window.geometry("500x500")
+
+lbl1=tk.Label(window,text='Enter the Ruppes ',font="vardana 14  bold ",bg="gray",fg="white")
+lbl1.place(x=10,y=10,height=50,width=200)
+
+txt1=tk.Entry(window)
+txt1.place(x=230,y=10,height=50,width=200)
+
+option=tk.IntVar()
+def converter():
+   val=float(txt1.get())
+
+   ans=float(val*option.get())
+   msg.showinfo("the currency converter","Ammount="+str(ans))
+
+
+rbtn1=ttk.Radiobutton(window,text="Bangladeshi Taka BDT",variable=option,value=1.286,command=converter)
+rbtn1.place(x=10,y=80,height=30,width=150)
+
+
+rbtn2=ttk.Radiobutton(window,text="Vietnamese Dong",variable=option,value=287.6429,command=converter)
+rbtn2.place(x=10,y=120,height=30,width=200)
+
+rbtn3=ttk.Radiobutton(window,text="Argentine peso",variable=option,value=2.1516,command=converter)
+rbtn3.place(x=10,y=160,height=30,width=150)
+
+
+rbtn4=ttk.Radiobutton(window,text="Japanese Yen",variable=option,value=1.5805,command=converter)
+rbtn4.place(x=10,y=200,height=30,width=150)
+
+window.mainloop()
+
+--------------4. Create a Tkinter window Application that implements tic-tac-toe game.------------------
+
+import tkinter as tk
+import tkinter.messagebox as tskmsg
+cnt =1
+mat=[[0,0,0],[0,0,0],[0,0,0]]
+
+def btn_click(btn,r,c):
+    global cnt
+    if(cnt%2==0):
+        btn['text']="X"
+        mat[r][c]='x'
+    else:
+        btn['text']="0"
+        mat[r][c]='0'
+    cnt=cnt+1
+    checkWinner(r,c)
+    btn['bg']='Yellow'
+    btn['state']='disabled'
+
+
+def checkWinner(r,c):
+    print(mat)
+    if(mat[r].count('0')==3):
+        tskmsg.showinfo("TIC TAC TOE",txt_player1.get()+" is Winner")
+    if (mat[r].count('x') == 3):
+        tskmsg.showinfo("TIC TAC TOE",txt_player2.get()+" is Winner")
+    lst=[]
+    for r in range(3):
+        lst.append(mat[r][c])
+        if(lst.count('0')==3):
+           tskmsg.showinfo("TIC TAC TOE",txt_player1.get()+" is Winner")
+        if (lst.count('x') == 3):
+            tskmsg.showinfo("TIC TAC TOE",txt_player2.get()+" is Winner")
+    lst=[]
+    for r in range(3):
+        lst.append(mat[r][r])
+        if (lst.count('0') == 3):
+       	tskmsg.showinfo("TIC TAC TOE", txt_player1.get() + " is Winner")
+        if (lst.count('x') == 3):
+            tskmsg.showinfo("TIC TAC TOE", txt_player2.get() + " is Winner")
+
+    lst = []
+    lst.append(mat[0][2])
+    lst.append(mat[1][1])
+    lst.append(mat[2][0])
+    if (lst.count('0') == 3):
+        tskmsg.showinfo("TIC TAC TOE", txt_player1.get() + " is Winner")
+    if (lst.count('x') == 3):
+        tskmsg.showinfo("TIC TAC TOE", txt_player2.get() + " is Winner")
+
+window = tk.Tk()
+window.title("TIC TAC TOE")
+window.geometry("500x500+10+10")
+lbl1 = tk.Label(window,text="Player -1 ",bg="White",fg="Black",font="Vardara 14 bold")
+lbl1.place(x=10,y=10,height=30,width=150)
+
+txt_player1 = tk.Entry(font="Vardara 14 bold")
+txt_player1.place(x=170,y=10,height=30,width=200)
+
+lbl2 = tk.Label(window,text="Player-2 ",bg="White",fg="Black",font="Vardara 14 bold")
+lbl2.place(x=10,y=50,height=30,width=150)
+
+txt_player2 = tk.Entry(font="Vardara 14 bold")
+txt_player2.place(x=170,y=50,height=30,width=200)
+
+btn_00 = tk.Button(font="Vardara 20 bold",bg="White",fg="Red",command=lambda:btn_click(btn_00,0,0))
+btn_00.place(x=10,y=100,width=100,height=100)
+
+btn_01 = tk.Button(font="Vardara 20 bold",bg="White",fg="Red",command=lambda:btn_click(btn_01,0,1))
+btn_01.place(x=120,y=100,width=100,height=100)
+
+btn_02 = tk.Button(font="Vardara 20 bold",bg="White",fg="Red",command=lambda:btn_click(btn_02,0,2))
+btn_02.place(x=230,y=100,width=100,height=100)
+
+btn_10 = tk.Button(font="Vardara 20 bold",bg="White",fg="Red",command=lambda:btn_click(btn_10,1,0))
+btn_10.place(x=10,y=210,width=100,height=100)
+btn_11 = tk.Button(font="Vardara 20 bold",bg="White",fg="Red",command=lambda:btn_click(btn_11,1,1))
+btn_11.place(x=120,y=210,width=100,height=100)
+
+btn_12 = tk.Button(font="Vardara 20 bold",bg="White",fg="Red",command=lambda:btn_click(btn_12,1,2))
+btn_12.place(x=230,y=210,width=100,height=100)
+
+btn_20 = tk.Button(font="Vardara 20 bold",bg="White",fg="Red",command=lambda:btn_click(btn_20,2,0))
+btn_20.place(x=10,y=320,width=100,height=100)
+
+btn_21 = tk.Button(font="Vardara 20 bold",bg="White",fg="Red",command=lambda:btn_click(btn_21,2,1))
+btn_21.place(x=120,y=320,width=100,height=100)
+
+btn_22 = tk.Button(font="Vardara 20 bold",bg="White",fg="Red",command=lambda:btn_click(btn_22,2,2))
+btn_22.place(x=230,y=320,width=100,height=100)
+window.mainloop()
+
+
+--------------5.Write a Python code to write data in CSV File.--------------
+import csv
+import os
+try:
+    flag= False
+    if (os.path.exists("Student.csv")):
+        flag=True
+    fobj = open("Student.csv", "a", newline="\n")
+    columnheader = ['Rno','Name','S1','S2','S3']
+    #data = [[1,'Pritesh',45,50,60],[2,'Hiya',67,89,90]]
+    writer = csv.writer(fobj)
+    if(flag==False):
+        writer.writerow(columnheader)
+    #writer.writerows(data)
+    rno=int(input("Enter Rollno:-"))
+    Name=input("Enter Your Name:-")
+    s1=eval(input("Enter Marks of Subject1:-"))
+    s2 = eval(input("Enter Marks of Subject1:-"))
+    s3 = eval(input("Enter Marks of Subject1:-"))
+    data = [rno,Name,s1,s2,s3]
+    writer.writerow(data)
+except Exception as e:
+    print("Problem in Write Operation ", e)
+finally:
+    if(fobj!=None):
+        fobj.close()
+
+------------6.Write a Python code to Read data from CSV File.--------------
+import csv
+try:
+    fobj = open("Student.csv", "r")
+    reader = csv.reader(fobj)
+    column= next(reader)
+    print(column)
+    for row in reader:
+        print(row)
+except Exception as e:
+    print("Problem in Read Operation ", e)
+finally:
+    if(fobj!=None):
+        fobj.close()
+
+
+--------------7.Write a Python code to write data in CSV File using Dictionary.-------------
+
+import csv
+import os
+try:
+    flag= False
+    if (os.path.exists("Student1.csv")):
+        flag=True
+    fobj = open("Student1.csv", "a", newline="\n")
+    columnheader = ['Rno','Name']
+    writer = csv.DictWriter(fobj,fieldnames=columnheader)
+    if(flag==False):
+        writer.writeheader()
+    #Write single record in csv File
+    rno=int(input("Enter Rollno:-"))
+    Name=input("Enter Your Name:-")
+    data = {'Rno':rno,'Name':Name}
+    writer.writerow(data)
+    #Write Multiple record in csv File
+    #data = [{'Rno':20,'Name':'Pritesh'},{'Rno':30,'Name':'Hiya'}]
+    #writer.writerows(data)
+except Exception as e:
+    print("Problem in Write Operation ", e)
+finally:
+    if(fobj!=None):
+        fobj.close()
+
+8.Write a Python code to Read data from CSV File using Dictionary.
+import csv
+try:
+    fobj = open("Student.csv", "r")
+    #reader = csv.DictReader(fobj,fieldnames=['Rno','Name','S1','S2','S3'])
+    reader = csv.DictReader(fobj)
+    for row in reader:
+        print(row)
+except Exception as e:
+    print("Problem in Read Operation ", e)
+finally:
+    if(fobj!=None):
+        fobj.close()
+
+
+---------------9.Write a Python code to perform insert, update, delete operation on SQLite Database.------------
+import sqlite3
+
+def dbconnect():
+    try:
+        con = sqlite3.connect('D:\TY2223\sqlite\dbtemp.db')
+        if(con!=None):
+            return con
+        else:
+            print("Not Connected")
+    except sqlite3.Error as e:
+        print("Problem in Connection",e)
+
+def insertdata(con_name,con_number,con_email):
+    try:
+        con = dbconnect()
+        cur = con.cursor()
+        sql="insert into contacts(con_name,con_number,con_email)values(?,?,?)"
+        if(cur.execute(sql,(con_name,con_number,con_email))):
+            print("Record Inserted")
+        con.commit()
+    except sqlite3.Error as e:
+        print("Problem in insert", e)
+    finally:
+        if(con!=None):
+            con.close()
+def updatedata(con_name,con_number,con_email,con_id):
+    try:
+        con = dbconnect()
+        cur = con.cursor()
+        sql = "update contacts set con_name=:con_name,con_number=:con_number," \
+              "con_email=:con_email where con_id=:con_id"
+        param={"con_email":con_email,"con_name":con_name,"con_number":con_number,
+               "con_id":con_id}
+        if(cur.execute(sql,param)):
+            print("Record Updated")
+        con.commit()
+    except sqlite3.Error as e:
+        print("Problem in Update :- ",e)
+    finally:
+        if(con!=None):
+            con.close()
+
+def deletedata(con_id):
+    try:
+        con = dbconnect()
+        cur = con.cursor()
+        sql="delete from contacts where con_id=?"
+        if(cur.execute(sql,(con_id,))):
+            print("record deleted")
+        con.commit()
+    except sqlite3.Error as e:
+        print("Problem in Delete:-",e)
+    finally:
+        if(con!=None):
+            con.close()
+
+def display(con_id):
+    try:
+        con=dbconnect()
+        cur=con.cursor()
+        sql = "select * from contacts where con_id=:con_id"
+        cur.execute(sql,{"con_id":con_id})
+        row = cur.fetchone()
+        if(row!=None):
+            print("row = ",row)
+            return True
+        else:
+            print("invalid con_id")
+    except sqlite3.Error as e:
+        print("Problem in Displayall ",e)
+    finally:
+        if(con!=None):
+            con.close()
+def displayall():
+    try:
+        con=dbconnect()
+        cur=con.cursor()
+        sql = "select * from contacts"
+        cur.execute(sql)
+        rows = cur.fetchall()
+        print("con_id".rjust(10), "con_name".rjust(25), "con_number".rjust(12),
+              "con_email".rjust(25))
+        for row in rows:
+          print(str(row[0]).rjust(10),str(row[1]).rjust(25),str(row[2]).rjust(12),
+                str(row[3]).rjust(25))
+    except sqlite3.Error as e:
+        print("Problem in Displayall ",e)
+    finally:
+        if(con!=None):
+            con.close()
+ch=1
+while(ch!=6):
+    print('1.Insert','2.Update','3.Delete','4.Display','5.DisplayAll','6.Exit',sep='\n')
+    ch=eval(input("Enter Your Choice:-"))
+    if(ch==1):
+        con_name=input("Enter Contact Name:-")
+        con_number=input("Enter Contact Number:-")
+        con_email = input("Enter Contact email:-")
+        insertdata(con_name,con_number,con_email)
+    elif(ch==2):
+        con_id=int(input("Enter con_id:-"))
+        if(display(con_id)):
+            con_name = input("Enter Contact Name:-")
+            con_number = input("Enter Contact Number:-")
+            con_email = input("Enter Contact email:-")
+            updatedata(con_name,con_number,con_email,con_id)
+    elif (ch == 3):
+        con_id = eval(input("Enter con_id:-"))
+        if (display(con_id)):
+            ch=input("Are you Sure to Delete?(Y/N)")
+            if(ch=='Y' or ch=='y'):
+                deletedata(con_id)
+    elif (ch == 4):
+         con_id=eval(input("Enter con_id:-"))
+         display(con_id)
+    elif (ch == 5):
+        displayall()
+    elif (ch==6):
+        print('Update')
+
+
+-----------10. Create a Tkinter Win app to perform insert, update & delete operation on user table.---------------
+import tkinter as tk
+import sqlite3
+
+def dbconect():
+    try:
+        con = sqlite3.connect("D:/TY23/DBTY23.db")
+        if(con!= None):
+            return con
+            print("Databse Connected");
+        else:
+            print("Connection Error");
+    except sqlite3.Error as e:
+        print("Problem in Connection", e )
+def insertData():
+    u_name = user.get()
+    u_password = password.get()
+    try:
+        con = dbconect()
+        cur = con.cursor()
+        sql = "insert into tm_user (u_name,u_password) values (?,?)"
+        if(cur.execute(sql,(u_name,u_password))):
+            print("Insert Sucessfully");
+        con.commit()
+    except sqlite3.Error as e:
+        print("problem in inserting data")
+    finally:
+        if(con!=None):
+            con.close()
+
+def updateData():
+    u_id = id.get()
+    u_name=user.get()
+    u_password=password.get()
+    try:
+        con = dbconect()
+        cur = con.cursor()
+        sql = "update tm_user set u_name=:u_name,u_password=:u_password where u_id=:u_id"
+        param = {"u_name":u_name,"u_password":u_password,"u_id":u_id}
+
+        if(cur.execute(sql,param)):
+            print("update Sucessfully");
+    except sqlite3.Error as e:
+        print("problem in Updating data", e)
+        con.commit()
+    finally:
+        if(con!=None):
+            con.close()
+
+def deleteData():
+    u_id = id.get()
+
+    try:
+        con = dbconect()
+        cur = con.cursor()
+        sql = "delete  from tm_user where u_id=? "
+        if(cur.execute(sql,(u_id))):
+            print("delete sucsessfully");
+        con.commit()
+    except sqlite3.Error as e:
+        print("problem in deleting data",e)
+    finally:
+        if(con!=None):
+            con.close()
+
+
+window = tk.Tk()
+window.geometry("500x500")
+window.title("Information Form")
+
+
+title=tk.Label(window,text="Submission Form ",fg="black",font="bold")
+title.pack()
+
+lbl1=tk.Label(window,text="Enter Name ",bg="blue",fg="white",font="bold")
+lbl1.place(x=40,y=90,width=150,height=40)
+
+user=tk.Entry(window)
+user.place(x=200,y=90,width=160,height=40)
+
+lbl2=tk.Label(window,text="Enter Password",bg="blue",fg="white",font="bold")
+lbl2.place(x=40,y=150,width=150,height=40)
+
+password=tk.Entry(window)
+password.place(x=200,y=150,width=160,height=40)
+
+lbl0=tk.Label(window,text="Enter ID ",bg="blue",fg="white",font="bold")
+lbl0.place(x=40,y=210,width=150,height=40)
+id=tk.Entry(window)
+id.place(x=200,y=210,width=160,height=40)
+
+insertbtn=tk.Button(window,text="Insert",bg="gray",fg="black",font="bold",command=insertData)
+insertbtn.place(x=40,y=270,width=100,height=40)
+
+updatebtn=tk.Button(window,text="Update",bg="gray",fg="black",font="bold",command=updateData)
+updatebtn.place(x=180,y=270,width=100,height=40)
+
+deletebtn=tk.Button(window,text="Delete",bg="gray",fg="black",font="bold",command=deleteData)
+deletebtn.place(x=320,y=270,width=100,height=40)
+
+
+window.mainloop()
+
+
+--------11. Create a Login form in Tkinter to check login activity using user table.-------
+import tkinter as tk
+import tkinter.messagebox as msg
+import sqlite3
+
+def dbconnect():
+    try:
+        con = sqlite3.connect("C:\sqlite\\first.db")
+        if (con != None):
+            return con
+        else:
+            print("Not Connected");
+    except sqlite3.Error as e:
+        print("Problem In Connection",e)
+        dbconnect() 
+
+def onclick():
+    try:
+        user_email = iuser.get()
+        user_password = ipass.get()
+
+        con = dbconnect()
+        cur = con.cursor()
+
+        sql = f"SELECT user_id from user WHERE user_email ='{user_email}' AND user_password ='{user_password}';"
+        cur.execute(sql)
+        if not  cur.fetchone():
+            msg.showinfo("Alert","InValid")
+        else:
+            msg.showinfo("Alert", "Welcome  " + iuser.get())
+    except sqlite3.Error as e:
+        print("Problem In Sign Up",e)
+    finally:
+        if (con != None):
+            con.close()
+window = tk.Tk()
+window.title("My Login Page")
+window.geometry("500x500")
+window.minsize(width=250,height=250)
+window.maxsize(width=1000,height=1000)
+
+
+lbl1 = tk.Label(window,text="Input UserName",bg="Green",fg="White",font = "bold")
+lbl1.place(x=30,y=40,width=150,height=40)
+
+iuser=tk.Entry(window,bg="White")
+iuser.place(x=190,y=40,width=150,height=40)
+
+
+lbl2 = tk.Label(window,text="Input Password ",bg="Green",fg="White",font = "bold")
+lbl2.place(x=30,y=90,width=150,height=40)
+
+ipass=tk.Entry(window,bg="White")
+ipass.place(x=190,y=90,width=150,height=40)
+
+submit = tk.Button(window,text="Submit",command = onclick)
+submit.place(x=190,y=150,width=150,height=40)
+window.mainloop()
